@@ -52,62 +52,72 @@ export function ServicesSection() {
   const services = [
     {
       title: "YouTube Marketing",
-      description:
-        "Build your brand through tutorials, reviews, and storytelling that builds lasting impact with your audience.",
+      description: "Long-form tutorials, reviews & storytelling",
       icon: Youtube,
-      stats: "150M+ Views",
+      stats: "150M+ Views | 7M+ Engagements",
       color: "bg-red-50 border-red-200",
       iconColor: "text-red-500",
       platforms: [
         { name: "Long-form Content", icon: Youtube, color: "text-red-500" },
-        { name: "Shorts & Reels", icon: Camera, color: "text-purple-500" },
-        { name: "Live Streaming", icon: TrendingUp, color: "text-blue-500" },
-        { name: "Community Building", icon: Megaphone, color: "text-orange-500" },
+        { name: "Tutorials", icon: Camera, color: "text-purple-500" },
+        { name: "Reviews", icon: TrendingUp, color: "text-blue-500" },
+        { name: "Storytelling", icon: Megaphone, color: "text-orange-500" },
       ],
     },
     {
       title: "Instagram Marketing",
-      description:
-        "Create authentic brand connections and showcase posts for authentic brand connections and engagement.",
+      description: "Stories, Reels & shoppable posts",
       icon: Instagram,
-      stats: "7M+ Followers",
+      stats: "1000M+ Views | 60M+ Engagements",
       color: "bg-pink-50 border-pink-200",
       iconColor: "text-pink-500",
       platforms: [
-        { name: "Feed Posts", icon: Instagram, color: "text-pink-500" },
-        { name: "Stories & Highlights", icon: Camera, color: "text-purple-500" },
-        { name: "Reels Creation", icon: TrendingUp, color: "text-blue-500" },
-        { name: "IGTV Content", icon: Youtube, color: "text-red-500" },
+        { name: "Stories", icon: Instagram, color: "text-pink-500" },
+        { name: "Reels", icon: Camera, color: "text-purple-500" },
+        { name: "Shoppable Posts", icon: TrendingUp, color: "text-blue-500" },
+        { name: "Feed Content", icon: Megaphone, color: "text-orange-500" },
       ],
     },
     {
       title: "LinkedIn Marketing",
-      description:
-        "Leverage industry influencers for enhanced credibility and B2B growth through professional networking.",
+      description: "Professional influence for B2B credibility",
       icon: Linkedin,
-      stats: "200M+ Reach",
+      stats: "200M+ Impressions | 4.5M+ Engagements",
       color: "bg-blue-50 border-blue-200",
       iconColor: "text-blue-500",
       platforms: [
         { name: "Professional Content", icon: Linkedin, color: "text-blue-500" },
-        { name: "Industry Insights", icon: BarChart3, color: "text-green-500" },
+        { name: "B2B Credibility", icon: BarChart3, color: "text-green-500" },
         { name: "Thought Leadership", icon: Megaphone, color: "text-orange-500" },
-        { name: "B2B Networking", icon: TrendingUp, color: "text-purple-500" },
+        { name: "Industry Networking", icon: TrendingUp, color: "text-purple-500" },
       ],
     },
     {
-      title: "TikTok Marketing",
-      description:
-        "Viral short-form content creation with trending challenges and authentic brand storytelling for maximum reach.",
-      icon: TrendingUp,
-      stats: "40M+ Views",
-      color: "bg-purple-50 border-purple-200",
-      iconColor: "text-purple-500",
+      title: "Telegram Marketing",
+      description: "Direct engagement & community building",
+      icon: MessageCircle,
+      stats: "100M+ Views | 5M+ Leads",
+      color: "bg-teal-50 border-teal-200",
+      iconColor: "text-teal-500",
       platforms: [
-        { name: "Viral Challenges", icon: TrendingUp, color: "text-purple-500" },
-        { name: "Brand Storytelling", icon: Camera, color: "text-pink-500" },
-        { name: "Trend Analysis", icon: BarChart3, color: "text-green-500" },
-        { name: "Community Engagement", icon: MessageCircle, color: "text-blue-500" },
+        { name: "Direct Engagement", icon: MessageCircle, color: "text-teal-500" },
+        { name: "Community Building", icon: Megaphone, color: "text-orange-500" },
+        { name: "Channel Management", icon: TrendingUp, color: "text-blue-500" },
+        { name: "Lead Generation", icon: BarChart3, color: "text-green-500" },
+      ],
+    },
+    {
+      title: "WhatsApp Marketing",
+      description: "Personalized broadcast & group engagement",
+      icon: MessageCircle,
+      stats: "350M+ Members | 8M+ Leads",
+      color: "bg-green-50 border-green-200",
+      iconColor: "text-green-500",
+      platforms: [
+        { name: "Personalized Broadcast", icon: MessageCircle, color: "text-green-500" },
+        { name: "Group Engagement", icon: Megaphone, color: "text-orange-500" },
+        { name: "Direct Messaging", icon: TrendingUp, color: "text-blue-500" },
+        { name: "Lead Generation", icon: BarChart3, color: "text-green-500" },
       ],
     },
   ]
@@ -122,7 +132,7 @@ export function ServicesSection() {
           </div>
           <h2 className="text-4xl lg:text-5xl font-bold text-foreground mb-6">Platform-Specific Expertise</h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            We specialize in influencer marketing across Instagram, YouTube, LinkedIn and WhatsApp, providing end-to-end
+            We specialize in influencer marketing across YouTube, Instagram, LinkedIn, Telegram and WhatsApp, providing end-to-end
             influencer marketing solutions, including campaign strategy, influencer selections, content creation, and
             performance tracking.
           </p>
@@ -159,7 +169,7 @@ export function ServicesSection() {
                   </div>
                   <div className="text-right">
                     <div className="text-2xl font-bold text-foreground">{service.stats}</div>
-                    <div className="text-sm text-muted-foreground">Total Reach</div>
+                    
                   </div>
                 </div>
                 <CardTitle className="text-2xl font-bold text-foreground mb-3">{service.title}</CardTitle>
@@ -191,11 +201,111 @@ export function ServicesSection() {
                   className={`w-full ${service.iconColor.replace("text-", "bg-").replace("-500", "-500")} text-black hover:opacity-90 transition-all duration-300 group-hover:scale-105 hover:text-amber-50`}
                   style={{ transform: hoveredCard === index ? "translateZ(15px)" : "translateZ(0px)" }}
                 >
-                  Explore {service.title.split(" ")[0]} Solutions
+                  {service.title === "YouTube Marketing" && "Explore YouTube Solutions"}
+                  {service.title === "Instagram Marketing" && "Explore Instagram Solutions"}
+                  {service.title === "LinkedIn Marketing" && "Explore LinkedIn Solutions"}
+                  {service.title === "Telegram Marketing" && "Explore Telegram Solutions"}
+                  {service.title === "WhatsApp Marketing" && "Explore WhatsApp Solutions"}
                 </Button>
               </CardContent>
             </Card>
           ))}
+        </div>
+
+        {/* Other Services Section */}
+        <div className="mt-20">
+          <div className="text-center mb-12">
+            <h3 className="text-3xl lg:text-4xl font-bold text-foreground mb-4">Other Services</h3>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              Comprehensive solutions beyond platform-specific marketing
+            </p>
+          </div>
+          
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <Card className="group cursor-pointer border-2 transition-all duration-300 hover:shadow-lg hover:scale-105 bg-gradient-to-br from-blue-50 to-indigo-50 border-blue-200">
+              <CardHeader className="pb-3">
+                <div className="w-12 h-12 rounded-xl bg-blue-100 flex items-center justify-center mb-3 group-hover:scale-110 transition-all duration-300">
+                  <Camera className="w-6 h-6 text-blue-600" />
+                </div>
+                <CardTitle className="text-lg font-semibold text-foreground">Content Creation</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <CardDescription className="text-muted-foreground text-sm leading-relaxed">
+                  Authentic videos, posts & campaigns showcasing real stories.
+                </CardDescription>
+              </CardContent>
+            </Card>
+
+            <Card className="group cursor-pointer border-2 transition-all duration-300 hover:shadow-lg hover:scale-105 bg-gradient-to-br from-green-50 to-emerald-50 border-green-200">
+              <CardHeader className="pb-3">
+                <div className="w-12 h-12 rounded-xl bg-green-100 flex items-center justify-center mb-3 group-hover:scale-110 transition-all duration-300">
+                  <TrendingUp className="w-6 h-6 text-green-600" />
+                </div>
+                <CardTitle className="text-lg font-semibold text-foreground">CPL (Cost Per Lead)</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <CardDescription className="text-muted-foreground text-sm leading-relaxed">
+                  Pay for qualified leads.
+                </CardDescription>
+              </CardContent>
+            </Card>
+
+            <Card className="group cursor-pointer border-2 transition-all duration-300 hover:shadow-lg hover:scale-105 bg-gradient-to-br from-purple-50 to-violet-50 border-purple-200">
+              <CardHeader className="pb-3">
+                <div className="w-12 h-12 rounded-xl bg-purple-100 flex items-center justify-center mb-3 group-hover:scale-110 transition-all duration-300">
+                  <BarChart3 className="w-6 h-6 text-purple-600" />
+                </div>
+                <CardTitle className="text-lg font-semibold text-foreground">CPI (Cost Per Install)</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <CardDescription className="text-muted-foreground text-sm leading-relaxed">
+                  Pay per app install.
+                </CardDescription>
+              </CardContent>
+            </Card>
+
+            <Card className="group cursor-pointer border-2 transition-all duration-300 hover:shadow-lg hover:scale-105 bg-gradient-to-br from-orange-50 to-amber-50 border-orange-200">
+              <CardHeader className="pb-3">
+                <div className="w-12 h-12 rounded-xl bg-orange-100 flex items-center justify-center mb-3 group-hover:scale-110 transition-all duration-300">
+                  <TrendingUp className="w-6 h-6 text-orange-600" />
+                </div>
+                <CardTitle className="text-lg font-semibold text-foreground">CPA (Cost Per Action)</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <CardDescription className="text-muted-foreground text-sm leading-relaxed">
+                  Pay for sign-ups/purchases/clicks.
+                </CardDescription>
+              </CardContent>
+            </Card>
+
+            <Card className="group cursor-pointer border-2 transition-all duration-300 hover:shadow-lg hover:scale-105 bg-gradient-to-br from-red-50 to-rose-50 border-red-200">
+              <CardHeader className="pb-3">
+                <div className="w-12 h-12 rounded-xl bg-red-100 flex items-center justify-center mb-3 group-hover:scale-110 transition-all duration-300">
+                  <BarChart3 className="w-6 h-6 text-red-600" />
+                </div>
+                <CardTitle className="text-lg font-semibold text-foreground">CPS (Cost Per Sale)</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <CardDescription className="text-muted-foreground text-sm leading-relaxed">
+                  Pay only for actual sales.
+                </CardDescription>
+              </CardContent>
+            </Card>
+
+            <Card className="group cursor-pointer border-2 transition-all duration-300 hover:shadow-lg hover:scale-105 bg-gradient-to-br from-teal-50 to-cyan-50 border-teal-200">
+              <CardHeader className="pb-3">
+                <div className="w-12 h-12 rounded-xl bg-teal-100 flex items-center justify-center mb-3 group-hover:scale-110 transition-all duration-300">
+                  <Megaphone className="w-6 h-6 text-teal-600" />
+                </div>
+                <CardTitle className="text-lg font-semibold text-foreground">Social Media Management</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <CardDescription className="text-muted-foreground text-sm leading-relaxed">
+                  Content creation, scheduling & analytics.
+                </CardDescription>
+              </CardContent>
+            </Card>
+          </div>
         </div>
       </div>
     </section>

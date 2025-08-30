@@ -1,27 +1,59 @@
 "use client"
 
 import type React from "react"
-
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Label } from "@/components/ui/label"
-import { Mail, Phone, MapPin, Send, MessageCircle } from "lucide-react"
+import { Mail, Phone, MapPin, Send, MessageCircle, Instagram } from "lucide-react"
 
 export function ContactSection() {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
-    company: "",
+    contact: "",
     message: "",
   })
 
+  const [selectedService, setSelectedService] = useState("")
+  const [campaignIntent, setCampaignIntent] = useState("")
+
+  // Load selected service and campaign intent from localStorage
+  useEffect(() => {
+    const service = localStorage.getItem('selectedService')
+    const intent = localStorage.getItem('campaignIntent')
+    if (service) setSelectedService(service)
+    if (intent) setCampaignIntent(intent)
+  }, [])
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
+    
+    // Prepare form data with additional context
+    const submissionData = {
+      ...formData,
+      selectedService,
+      campaignIntent,
+      timestamp: new Date().toISOString()
+    }
+    
     // Handle form submission
-    console.log("Form submitted:", formData)
+    console.log("Form submitted:", submissionData)
+    
+    // You can add API call here to send data to your backend
+    // Example: await fetch('/api/contact', { method: 'POST', body: JSON.stringify(submissionData) })
+    
+    // Show success message (you can implement a toast notification here)
+    alert("Thank you for your message! We'll get back to you within 24 hours.")
+    
+    // Clear form and localStorage
+    setFormData({ name: "", email: "", contact: "", message: "" })
+    localStorage.removeItem('selectedService')
+    localStorage.removeItem('campaignIntent')
+    setSelectedService("")
+    setCampaignIntent("")
   }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -31,6 +63,21 @@ export function ContactSection() {
     }))
   }
 
+  // Pre-fill message based on selected service and campaign intent
+  useEffect(() => {
+    if (selectedService && campaignIntent) {
+      let defaultMessage = `Hi, I'm interested in your ${selectedService} services. `
+      if (campaignIntent === 'start') {
+        defaultMessage += "I'd like to start a campaign and would love to discuss how we can work together."
+      } else if (campaignIntent === 'call') {
+        defaultMessage += "I'd like to schedule a call to discuss my requirements in detail."
+      } else {
+        defaultMessage += "Please provide more information about your services."
+      }
+      setFormData(prev => ({ ...prev, message: defaultMessage }))
+    }
+  }, [selectedService, campaignIntent])
+
   return (
     <section id="contact" className="py-20 bg-muted/30">
       <div className="max-w-7xl mx-auto px-4">
@@ -39,11 +86,18 @@ export function ContactSection() {
             <MessageCircle className="w-5 h-5" />
             <span>Get In Touch</span>
           </div>
-          <h2 className="text-4xl lg:text-5xl font-bold text-foreground mb-6">Let's Create Something Amazing</h2>
+          <h2 className="text-4xl lg:text-5xl font-bold text-foreground mb-6">Get in Touch with Influnzo</h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
             Ready to elevate your brand? We'd love to hear about your project and discuss how we can help you achieve
             your digital marketing goals.
           </p>
+          {selectedService && (
+            <div className="mt-4 p-3 bg-primary/10 rounded-lg inline-block">
+              <p className="text-primary font-medium">
+                Selected Service: <span className="font-bold">{selectedService}</span>
+              </p>
+            </div>
+          )}
         </div>
 
         <div className="grid lg:grid-cols-2 gap-12">
@@ -58,7 +112,7 @@ export function ContactSection() {
                   </div>
                   <div>
                     <div className="font-semibold text-foreground">Email</div>
-                    <div className="text-muted-foreground">hello@influencer.com</div>
+                    <div className="text-muted-foreground">Contact@influnzo.com</div>
                   </div>
                 </div>
 
@@ -68,20 +122,34 @@ export function ContactSection() {
                   </div>
                   <div>
                     <div className="font-semibold text-foreground">Phone</div>
-                    <div className="text-muted-foreground">+1 (555) 123-4567</div>
+                    <div className="text-muted-foreground">+91 9767765725</div>
                   </div>
                 </div>
 
                 <div className="flex items-center gap-4">
                   <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center">
-                    <MapPin className="w-6 h-6 text-primary" />
+                    <MessageCircle className="w-6 h-6 text-primary" />
                   </div>
                   <div>
-                    <div className="font-semibold text-foreground">Location</div>
-                    <div className="text-muted-foreground">Los Angeles, CA</div>
+                    <div className="font-semibold text-foreground">WhatsApp</div>
+                    <div className="text-muted-foreground">Quick chat available</div>
                   </div>
                 </div>
               </div>
+            </div>
+
+            {/* Social Media */}
+            <div className="space-y-4">
+              <h4 className="text-lg font-semibold text-foreground">Follow Us</h4>
+              <Button 
+                variant="outline" 
+                size="lg" 
+                className="w-full border-2 border-pink-200 text-pink-600 hover:bg-pink-50 hover:border-pink-300 transition-all duration-300"
+                onClick={() => window.open('https://instagram.com/influnzo', '_blank')}
+              >
+                <Instagram className="w-5 h-5 mr-2" />
+                Follow on Instagram
+              </Button>
             </div>
 
             {/* Response Time */}
@@ -103,48 +171,48 @@ export function ContactSection() {
             </CardHeader>
             <CardContent>
               <form onSubmit={handleSubmit} className="space-y-6">
-                <div className="grid md:grid-cols-2 gap-4">
-                  <div className="space-y-2">
-                    <Label htmlFor="name" className="text-foreground font-medium">
-                      Name *
-                    </Label>
-                    <Input
-                      id="name"
-                      name="name"
-                      value={formData.name}
-                      onChange={handleChange}
-                      placeholder="Your full name"
-                      required
-                      className="border-border focus:border-primary focus:ring-primary/20"
-                    />
-                  </div>
-                  <div className="space-y-2">
-                    <Label htmlFor="email" className="text-foreground font-medium">
-                      Email *
-                    </Label>
-                    <Input
-                      id="email"
-                      name="email"
-                      type="email"
-                      value={formData.email}
-                      onChange={handleChange}
-                      placeholder="your@email.com"
-                      required
-                      className="border-border focus:border-primary focus:ring-primary/20"
-                    />
-                  </div>
+                <div className="space-y-2">
+                  <Label htmlFor="name" className="text-foreground font-medium">
+                    Name *
+                  </Label>
+                  <Input
+                    id="name"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleChange}
+                    placeholder="Your full name"
+                    required
+                    className="border-border focus:border-primary focus:ring-primary/20"
+                  />
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="company" className="text-foreground font-medium">
-                    Company
+                  <Label htmlFor="email" className="text-foreground font-medium">
+                    Email *
                   </Label>
                   <Input
-                    id="company"
-                    name="company"
-                    value={formData.company}
+                    id="email"
+                    name="email"
+                    type="email"
+                    value={formData.email}
                     onChange={handleChange}
-                    placeholder="Your company name"
+                    placeholder="your@email.com"
+                    required
+                    className="border-border focus:border-primary focus:ring-primary/20"
+                  />
+                </div>
+
+                <div className="space-y-2">
+                  <Label htmlFor="contact" className="text-foreground font-medium">
+                    Contact Number *
+                  </Label>
+                  <Input
+                    id="contact"
+                    name="contact"
+                    value={formData.contact}
+                    onChange={handleChange}
+                    placeholder="Your contact number"
+                    required
                     className="border-border focus:border-primary focus:ring-primary/20"
                   />
                 </div>

@@ -1,23 +1,31 @@
 "use client"
 
-import { Instagram, Youtube, Linkedin, Twitter, Mail, Phone } from "lucide-react"
+import { Instagram, Youtube, Linkedin, MessageCircle, Mail, Phone, MapPin } from "lucide-react"
 
 export function Footer() {
   const socialLinks = [
-    { icon: Instagram, href: "#", label: "Instagram" },
+    { icon: Instagram, href: "https://instagram.com/influnzo", label: "Instagram" },
     { icon: Youtube, href: "#", label: "YouTube" },
     { icon: Linkedin, href: "#", label: "LinkedIn" },
-    { icon: Twitter, href: "#", label: "Twitter" },
+    { icon: MessageCircle, href: "#", label: "WhatsApp" },
   ]
 
   const quickLinks = [
-    { name: "Home", href: "#home" },
-    { name: "Services", href: "#services" },
-    { name: "About", href: "#about" },
+    { name: "Home", href: "/" },
+    { name: "Services", href: "/services" },
+    { name: "About", href: "/about" },
     { name: "Contact", href: "#contact" },
   ]
 
-  const services = ["Social Media Marketing", "Content Creation", "Brand Partnerships", "Analytics & Growth"]
+  const services = [
+    "YouTube Marketing", 
+    "Instagram Marketing", 
+    "LinkedIn Marketing", 
+    "Telegram Marketing", 
+    "WhatsApp Marketing",
+    "Content Creation",
+    "Social Media Management"
+  ]
 
   return (
     <footer className="bg-foreground text-background">
@@ -29,11 +37,10 @@ export function Footer() {
               <div className="w-10 h-10 bg-primary rounded-full flex items-center justify-center">
                 <span className="text-primary-foreground font-bold text-xl">I</span>
               </div>
-              <span className="ml-3 text-2xl font-bold">InfluencePro</span>
+              <span className="ml-3 text-2xl font-bold">Influnzo</span>
             </div>
             <p className="text-background/80 leading-relaxed">
-              Transforming brands through authentic storytelling and strategic digital presence. Your success is our
-              passion.
+              Your trusted partner in influencer marketing for the coding and tech industry. We connect brands with 55,000+ influencers to drive measurable results.
             </p>
             <div className="flex space-x-4">
               {socialLinks.map((social) => (
@@ -42,6 +49,8 @@ export function Footer() {
                   href={social.href}
                   className="w-10 h-10 bg-background/10 rounded-full flex items-center justify-center hover:bg-primary transition-all duration-300 hover:scale-110 group"
                   aria-label={social.label}
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
                   <social.icon className="w-5 h-5 text-background group-hover:text-primary-foreground" />
                 </a>
@@ -68,13 +77,16 @@ export function Footer() {
 
           {/* Services */}
           <div>
-            <h3 className="text-lg font-bold mb-6">Services</h3>
+            <h3 className="text-lg font-bold mb-6">Our Services</h3>
             <ul className="space-y-3">
               {services.map((service) => (
                 <li key={service}>
-                  <span className="text-background/80 hover:text-primary transition-colors duration-300 cursor-pointer hover:translate-x-1 inline-block">
+                  <a 
+                    href="/services" 
+                    className="text-background/80 hover:text-primary transition-colors duration-300 cursor-pointer hover:translate-x-1 inline-block"
+                  >
                     {service}
-                  </span>
+                  </a>
                 </li>
               ))}
             </ul>
@@ -86,22 +98,37 @@ export function Footer() {
             <div className="space-y-4">
               <div className="flex items-center gap-3">
                 <Mail className="w-5 h-5 text-primary" />
-                <span className="text-background/80">hello@influencer.com</span>
+                <span className="text-background/80">Contact@influnzo.com</span>
               </div>
               <div className="flex items-center gap-3">
                 <Phone className="w-5 h-5 text-primary" />
-                <span className="text-background/80">+1 (555) 123-4567</span>
+                <span className="text-background/80">+91 9767765725</span>
+              </div>
+              <div className="flex items-center gap-3">
+                <MessageCircle className="w-5 h-5 text-primary" />
+                <span className="text-background/80">WhatsApp Business</span>
               </div>
             </div>
 
-            {/* Newsletter */}
-            
+            {/* Stats */}
+            <div className="mt-6 pt-6 border-t border-background/20">
+              <div className="grid grid-cols-2 gap-4 text-sm">
+                <div>
+                  <div className="text-primary font-bold">100+</div>
+                  <div className="text-background/60">Brands</div>
+                </div>
+                <div>
+                  <div className="text-primary font-bold">55K+</div>
+                  <div className="text-background/60">Influencers</div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 
         {/* Bottom Bar */}
         <div className="border-t border-background/20 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-background/60 text-sm">© 2024 InfluencePro. All rights reserved.</p>
+          <p className="text-background/60 text-sm">© 2024 Influnzo. All rights reserved.</p>
           <div className="flex gap-6 text-sm">
             <a href="#" className="text-background/60 hover:text-primary transition-colors">
               Privacy Policy

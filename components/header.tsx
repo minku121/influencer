@@ -16,7 +16,12 @@ export function Header() {
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
-  const navItems = ["Home", "Services", "About", "Contact"]
+  const navItems = [
+    { name: "Home", href: "/" },
+    { name: "Services", href: "/services" },
+    { name: "About", href: "/about" },
+    { name: "Contact", href: "#contact" }
+  ]
 
   return (
     <>
@@ -26,11 +31,11 @@ export function Header() {
           <div className="flex items-center gap-6">
             <div className="flex items-center gap-2">
               <Mail className="w-4 h-4" />
-              <span>hello@influencer.com</span>
+              <span>Contact@influnzo.com</span>
             </div>
             <div className="flex items-center gap-2">
               <Phone className="w-4 h-4" />
-              <span>+1 1234567890</span>
+              <span>+91 9767765725</span>
             </div>
           </div>
           <div className="hidden md:block">
@@ -52,18 +57,18 @@ export function Header() {
               <div className="w-10 h-10 bg-primary rounded-full flex items-center justify-center animate-pulse-glow">
                 <span className="text-primary-foreground font-bold text-xl">I</span>
               </div>
-              <span className="ml-3 text-2xl font-bold text-foreground">InfluencePro</span>
+              <span className="ml-3 text-2xl font-bold text-foreground">Influnzo</span>
             </div>
 
             {/* Desktop Navigation */}
             <nav className="hidden md:flex items-center space-x-8">
               {navItems.map((item) => (
                 <a
-                  key={item}
-                  href={`#${item.toLowerCase()}`}
+                  key={item.name}
+                  href={item.href}
                   className="text-foreground hover:text-primary transition-colors duration-300 font-medium relative group"
                 >
-                  {item}
+                  {item.name}
                   <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
                 </a>
               ))}
@@ -87,12 +92,12 @@ export function Header() {
             <nav className="px-4 py-4 space-y-4">
               {navItems.map((item) => (
                 <a
-                  key={item}
-                  href={`#${item.toLowerCase()}`}
+                  key={item.name}
+                  href={item.href}
                   className="block text-foreground hover:text-primary transition-colors duration-300 font-medium"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
-                  {item}
+                  {item.name}
                 </a>
               ))}
             </nav>

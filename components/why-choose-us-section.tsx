@@ -85,22 +85,7 @@ export function WhyChooseUsSection() {
         </div>
 
         {/* Call to action */}
-        <div className="text-center mt-16">
-          <div className="bg-gradient-bg rounded-3xl p-12 max-w-4xl mx-auto">
-            <h3 className="text-3xl font-bold text-foreground mb-4">Ready to Transform Your Brand?</h3>
-            <p className="text-xl text-muted-foreground mb-8">
-              Join hundreds of successful brands who trust us with their digital presence.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button className="bg-primary hover:bg-primary/90 text-primary-foreground px-8 py-4 rounded-full font-semibold text-lg transition-all duration-300 hover:scale-105 hover:shadow-xl">
-                Start Your Journey
-              </button>
-              <button className="border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground px-8 py-4 rounded-full font-semibold text-lg transition-all duration-300 hover:scale-105">
-                View Portfolio
-              </button>
-            </div>
-          </div>
-        </div>
+       
       </div>
     </section>
   )
