@@ -209,71 +209,87 @@ export function ServicesPage() {
 
       {/* Main Services */}
       <section className="py-20">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="grid lg:grid-cols-2 gap-8">
-            {services.map((service, index) => (
-              <Card 
-                key={service.title}
-                className={`group cursor-pointer border-2 transition-all duration-500 hover:shadow-xl hover:scale-105 bg-gradient-to-br ${service.bgColor} ${service.borderColor}`}
-              >
-                <CardHeader className="pb-4">
-                  <div className="flex items-center justify-between mb-4">
-                    <div className={`w-16 h-16 rounded-2xl bg-white/80 flex items-center justify-center group-hover:scale-110 transition-all duration-300`}>
-                      <service.icon className={`w-8 h-8 ${service.iconColor}`} />
-                    </div>
-                    <Badge variant="secondary" className="text-sm font-medium">
-                      {service.stats}
-                    </Badge>
-                  </div>
-                  <CardTitle className="text-2xl font-bold text-foreground mb-3">
-                    {service.title}
-                  </CardTitle>
-                  <p className="text-muted-foreground leading-relaxed text-base mb-4">
-                    {service.description}
-                  </p>
-                  
-                  {/* Features */}
-                  <div className="grid grid-cols-2 gap-2 mb-4">
-                    {service.features.map((feature, idx) => (
-                      <div key={idx} className="flex items-center gap-2 text-sm text-muted-foreground">
-                        <CheckCircle className="w-4 h-4 text-green-500" />
-                        {feature}
-                      </div>
-                    ))}
-                  </div>
+  <div className="max-w-7xl mx-auto px-4">
+    <div className="grid lg:grid-cols-2 gap-8">
+      {services.map((service, index) => (
+        <Card
+          key={service.title}
+          className={`group cursor-pointer border-2 transition-all duration-500 hover:shadow-xl hover:scale-105 bg-gradient-to-br ${service.bgColor} ${service.borderColor}`}
+        >
+          <CardHeader className="pb-4">
+            {/* Icon + Badge Row */}
+            <div className="flex items-start justify-between mb-4 gap-4">
+              {/* Icon */}
+              <div className="w-16 h-16 rounded-2xl bg-white/80 flex items-center justify-center group-hover:scale-110 transition-all duration-300 shrink-0">
+                <service.icon className={`w-8 h-8 ${service.iconColor}`} />
+              </div>
 
-                  {/* Case Study */}
-                  <div className="bg-white/60 rounded-lg p-3 mb-4">
-                    <p className="text-sm text-muted-foreground italic">
-                      💡 {service.caseStudy}
-                    </p>
-                  </div>
-                </CardHeader>
-                
-                <CardContent>
-                  <Button 
-                    onClick={() => handleServiceClick(service.title)}
-                    className={`w-full font-semibold py-6 text-lg rounded-xl transition-all duration-300 group-hover:scale-105 hover:shadow-xl ${
-                      service.title === "YouTube Marketing" 
-                        ? "bg-red-500 hover:bg-red-600 text-white" 
-                        : service.title === "Instagram Marketing"
-                        ? "bg-gradient-to-r from-pink-500 to-purple-500 hover:from-pink-600 hover:to-purple-600 text-white"
-                        : service.title === "LinkedIn Marketing"
-                        ? "bg-blue-500 hover:bg-blue-600 text-white"
-                        : service.title === "Telegram Marketing"
-                        ? "bg-teal-500 hover:bg-teal-600 text-white"
-                        : "bg-green-500 hover:bg-green-600 text-white"
-                    }`}
-                  >
-                    Explore {service.title.split(" ")[0]} Solutions
-                    <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
-                  </Button>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
+              {/* Badge */}
+              <Badge
+                variant="secondary"
+                className="text-sm font-medium whitespace-normal break-words px-3 py-1 max-w-[200px] text-center"
+              >
+                {service.stats}
+              </Badge>
+            </div>
+
+            {/* Title */}
+            <CardTitle className="text-2xl font-bold text-foreground mb-3">
+              {service.title}
+            </CardTitle>
+
+            {/* Description */}
+            <p className="text-muted-foreground leading-relaxed text-base mb-4">
+              {service.description}
+            </p>
+
+            {/* Features */}
+            <div className="grid grid-cols-2 gap-2 mb-4">
+              {service.features.map((feature, idx) => (
+                <div
+                  key={idx}
+                  className="flex items-center gap-2 text-sm text-muted-foreground"
+                >
+                  <CheckCircle className="w-4 h-4 text-green-500" />
+                  {feature}
+                </div>
+              ))}
+            </div>
+
+            {/* Case Study */}
+            <div className="bg-white/60 rounded-lg p-3 mb-4">
+              <p className="text-sm text-muted-foreground italic">
+                💡 {service.caseStudy}
+              </p>
+            </div>
+          </CardHeader>
+
+          {/* CTA Button */}
+          <CardContent>
+            <Button
+              onClick={() => handleServiceClick(service.title)}
+              className={`w-full font-semibold py-6 text-lg rounded-xl transition-all duration-300 group-hover:scale-105 hover:shadow-xl ${
+                service.title === "YouTube Marketing"
+                  ? "bg-red-500 hover:bg-red-600 text-white"
+                  : service.title === "Instagram Marketing"
+                  ? "bg-gradient-to-r from-pink-500 to-purple-500 hover:from-pink-600 hover:to-purple-600 text-white"
+                  : service.title === "LinkedIn Marketing"
+                  ? "bg-blue-500 hover:bg-blue-600 text-white"
+                  : service.title === "Telegram Marketing"
+                  ? "bg-teal-500 hover:bg-teal-600 text-white"
+                  : "bg-green-500 hover:bg-green-600 text-white"
+              }`}
+            >
+              Explore {service.title.split(" ")[0]} Solutions
+              <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+            </Button>
+          </CardContent>
+        </Card>
+      ))}
+    </div>
+  </div>
+</section>
+
 
       {/* Other Services */}
       <section className="py-20 bg-muted/30">

@@ -9,18 +9,18 @@ import { useGsapAnimations } from "@/hooks/use-gsap-animations"
 import { gsap } from "gsap"
 
 export function HeroSection() {
+
   const { elementRef: textRef, slideInFromLeft, scaleIn, float } = useGsapAnimations()
-  // Use slideInFromLeft for buttons
   const { elementRef: buttonRef, slideInFromLeft: slideInButtons } = useGsapAnimations()
   const { elementRef: imageRef, float: floatImage } = useGsapAnimations()
 
   useEffect(() => {
-    // Initial page load animations
+  
     gsap.set(".hero-content", { opacity: 0, y: 50 })
     gsap.set(".hero-buttons", { opacity: 0, x: -100 })
     gsap.set(".hero-image", { opacity: 0, x: 100, rotation: 15 })
 
-    // Staggered entrance animation
+    
     const tl = gsap.timeline()
     
     tl.to(".hero-content", {
@@ -43,7 +43,7 @@ export function HeroSection() {
       ease: "power2.out"
     }, "-=0.5")
 
-    // Start floating animations after entrance
+    
     setTimeout(() => {
       floatImage(0)
     }, 2000)
@@ -51,7 +51,7 @@ export function HeroSection() {
   }, [])
 
   useEffect(() => {
-    // Scroll-triggered animations
+   
     slideInFromLeft(0, 0.2)
     slideInButtons(0.5, 0.15)
   }, [])
@@ -130,11 +130,11 @@ function BrandDialog() {
   
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    // Store user type and navigate to contact
+  
     localStorage.setItem('userType', 'brand')
     localStorage.setItem('brandFormData', JSON.stringify(form))
     
-    // Navigate to contact section
+    
     const contactSection = document.getElementById('contact')
     if (contactSection) {
       contactSection.scrollIntoView({ behavior: 'smooth' })
@@ -187,12 +187,13 @@ function InfluencerDialog() {
   
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    // Store user type and navigate to contact
+  
     localStorage.setItem('userType', 'influencer')
     localStorage.setItem('influencerFormData', JSON.stringify(form))
     
-    // Navigate to contact section
+   
     const contactSection = document.getElementById('contact')
+    
     if (contactSection) {
       contactSection.scrollIntoView({ behavior: 'smooth' })
     }

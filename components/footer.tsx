@@ -1,20 +1,18 @@
 "use client"
 
 import { Instagram, Youtube, Linkedin, MessageCircle, Mail, Phone, MapPin } from "lucide-react"
+import Image from "next/image"
 
 export function Footer() {
   const socialLinks = [
     { icon: Instagram, href: "https://instagram.com/influnzo", label: "Instagram" },
-    { icon: Youtube, href: "#", label: "YouTube" },
-    { icon: Linkedin, href: "#", label: "LinkedIn" },
-    { icon: MessageCircle, href: "#", label: "WhatsApp" },
   ]
 
   const quickLinks = [
     { name: "Home", href: "/" },
     { name: "Services", href: "/services" },
     { name: "About", href: "/about" },
-    { name: "Contact", href: "#contact" },
+    { name: "Contact", href: "/contact" },
   ]
 
   const services = [
@@ -34,10 +32,14 @@ export function Footer() {
           {/* Brand Section */}
           <div className="space-y-6">
             <div className="flex items-center">
-              <div className="w-10 h-10 bg-primary rounded-full flex items-center justify-center">
-                <span className="text-primary-foreground font-bold text-xl">I</span>
-              </div>
-              <span className="ml-3 text-2xl font-bold">Influnzo</span>
+              <Image 
+                src="/logo.png" 
+                alt="Influnzo Logo" 
+                width={40} 
+                height={40} 
+                className="w-30 h-15 object-contain"
+              />
+             
             </div>
             <p className="text-background/80 leading-relaxed">
               Your trusted partner in influencer marketing for the coding and tech industry. We connect brands with 55,000+ influencers to drive measurable results.
@@ -102,11 +104,7 @@ export function Footer() {
               </div>
               <div className="flex items-center gap-3">
                 <Phone className="w-5 h-5 text-primary" />
-                <span className="text-background/80">+91 9767765725</span>
-              </div>
-              <div className="flex items-center gap-3">
-                <MessageCircle className="w-5 h-5 text-primary" />
-                <span className="text-background/80">WhatsApp Business</span>
+                <span className="text-background/80">+91 9767765725 (Also available on WhatsApp)</span>
               </div>
             </div>
 
@@ -128,7 +126,7 @@ export function Footer() {
 
         {/* Bottom Bar */}
         <div className="border-t border-background/20 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-background/60 text-sm">© 2024 Influnzo. All rights reserved.</p>
+          <p className="text-background/60 text-sm">© 2025 Influnzo. All rights reserved.</p>
           <div className="flex gap-6 text-sm">
             <a href="#" className="text-background/60 hover:text-primary transition-colors">
               Privacy Policy

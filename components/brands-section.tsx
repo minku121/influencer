@@ -23,7 +23,7 @@ function Marquee({ direction = "left" }: { direction?: "left" | "right" }) {
         style={{ animationDuration: "30s" }}
       >
         {[...brands, ...brands].map((brand, idx) => (
-          <div key={idx} className="w-40 h-16 flex items-center justify-center grayscale opacity-80 hover:grayscale-0 hover:opacity-100 transition-all">
+          <div key={idx} className="w-40 h-16 flex items-center justify-center opacity-80 hover:opacity-100 transition-all">
             <Image src={brand.src} alt={brand.name} width={160} height={64} objectFit="contain" />
           </div>
         ))}

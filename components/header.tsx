@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { Mail, Phone, Menu, X } from "lucide-react"
+import Image from "next/image"
 
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false)
@@ -20,7 +21,7 @@ export function Header() {
     { name: "Home", href: "/" },
     { name: "Services", href: "/services" },
     { name: "About", href: "/about" },
-    { name: "Contact", href: "#contact" }
+    { name: "Contact", href: "/contact" }
   ]
 
   return (
@@ -28,18 +29,13 @@ export function Header() {
       {/* Top contact bar */}
       <div className="bg-primary text-primary-foreground py-2 px-4">
         <div className="max-w-7xl mx-auto flex justify-between items-center text-sm">
-          <div className="flex items-center gap-6">
-            <div className="flex items-center gap-2">
-              <Mail className="w-4 h-4" />
-              <span>Contact@influnzo.com</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <Phone className="w-4 h-4" />
-              <span>+91 9767765725</span>
-            </div>
+          <div className="flex items-center gap-2">
+            <Mail className="w-4 h-4" />
+            <span>Contact@influnzo.com</span>
           </div>
-          <div className="hidden md:block">
-            <span>Follow us for daily inspiration!</span>
+          <div className="flex items-center gap-2">
+            <Phone className="w-4 h-4" />
+            <span>+91 9767765725</span>
           </div>
         </div>
       </div>
@@ -54,10 +50,13 @@ export function Header() {
           <div className="flex items-center justify-between">
             {/* Logo */}
             <div className="flex items-center">
-              <div className="w-10 h-10 bg-primary rounded-full flex items-center justify-center animate-pulse-glow">
-                <span className="text-primary-foreground font-bold text-xl">I</span>
-              </div>
-              <span className="ml-3 text-2xl font-bold text-foreground">Influnzo</span>
+              <Image 
+                src="/logo.png" 
+                alt="Influnzo Logo" 
+                width={40} 
+                height={40} 
+                className="w-30 h-10 object-contain"
+              />
             </div>
 
             {/* Desktop Navigation */}
