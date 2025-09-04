@@ -24,7 +24,6 @@ export default function ContactPage() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    // Handle form submission logic here
     console.log("Form submitted:", form)
     alert("Thank you for your message! We'll get back to you soon.")
     setForm({ name: "", email: "", phone: "", company: "", message: "", userType: "" })
@@ -33,7 +32,6 @@ export default function ContactPage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-background via-primary/5 to-secondary/5 py-20">
       <div className="max-w-7xl mx-auto px-4">
-        {/* Page Header */}
         <div className="text-center mb-16">
           <h1 className="text-4xl lg:text-6xl font-bold text-foreground mb-6">
             Get in Touch
@@ -44,7 +42,6 @@ export default function ContactPage() {
         </div>
 
         <div className="grid lg:grid-cols-2 gap-12">
-          {/* Contact Form */}
           <div ref={formRef}>
             <Card className="shadow-2xl border-0 bg-background/80 backdrop-blur-sm">
               <CardHeader>
@@ -137,7 +134,6 @@ export default function ContactPage() {
             </Card>
           </div>
 
-          {/* Contact Information */}
           <div ref={infoRef} className="space-y-8">
             <Card className="shadow-2xl border-0 bg-background/80 backdrop-blur-sm">
               <CardHeader>
@@ -175,7 +171,6 @@ export default function ContactPage() {
               </CardContent>
             </Card>
 
-            {/* Why Choose Us */}
             <Card className="shadow-2xl border-0 bg-gradient-to-br from-primary/10 to-secondary/10 backdrop-blur-sm">
               <CardHeader>
                 <CardTitle className="text-2xl">Why Choose Influnzo?</CardTitle>
@@ -214,7 +209,6 @@ export default function ContactPage() {
           </div>
         </div>
 
-        {/* FAQ Section */}
         <div className="mt-20">
           <h2 className="text-3xl font-bold text-center mb-12">Frequently Asked Questions</h2>
           <div className="grid md:grid-cols-2 gap-8">
