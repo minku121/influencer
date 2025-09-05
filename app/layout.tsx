@@ -4,6 +4,7 @@ import { GeistSans } from "geist/font/sans"
 import { GeistMono } from "geist/font/mono"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
+import { GoogleAnalytics } from "@/components/google-analytics"
 import "./globals.css"
 
 export const metadata: Metadata = {
@@ -103,6 +104,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${GeistSans.variable} ${GeistMono.variable} antialiased`} suppressHydrationWarning>
       <body>
+        <GoogleAnalytics />
         <Header />
         <main>
           {children}
