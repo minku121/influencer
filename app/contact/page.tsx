@@ -8,6 +8,7 @@ import { Textarea } from "@/components/ui/textarea"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Mail, Phone, MapPin, MessageCircle, Instagram } from "lucide-react"
 import { useGsapAnimations } from "@/hooks/use-gsap-animations"
+import UnifiedForm from "@/components/unified-form"
 
 export default function ContactPage() {
   const [form, setForm] = useState({
@@ -51,85 +52,7 @@ export default function ContactPage() {
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  <div className="grid md:grid-cols-2 gap-4">
-                    <div>
-                      <Label htmlFor="name">Full Name *</Label>
-                      <Input
-                        id="name"
-                        value={form.name}
-                        onChange={(e) => setForm({ ...form, name: e.target.value })}
-                        placeholder="Your full name"
-                        required
-                      />
-                    </div>
-                    <div>
-                      <Label htmlFor="email">Email Address *</Label>
-                      <Input
-                        id="email"
-                        type="email"
-                        value={form.email}
-                        onChange={(e) => setForm({ ...form, email: e.target.value })}
-                        placeholder="your@email.com"
-                        required
-                      />
-                    </div>
-                  </div>
-
-                  <div className="grid md:grid-cols-2 gap-4">
-                    <div>
-                      <Label htmlFor="phone">Phone Number</Label>
-                      <Input
-                        id="phone"
-                        value={form.phone}
-                        onChange={(e) => setForm({ ...form, phone: e.target.value })}
-                        placeholder="+91 1234567890"
-                      />
-                    </div>
-                    <div>
-                      <Label htmlFor="company">Company/Brand</Label>
-                      <Input
-                        id="company"
-                        value={form.company}
-                        onChange={(e) => setForm({ ...form, company: e.target.value })}
-                        placeholder="Your company name"
-                      />
-                    </div>
-                  </div>
-
-                  <div>
-                    <Label htmlFor="userType">I am a *</Label>
-                    <select
-                      id="userType"
-                      value={form.userType}
-                      onChange={(e) => setForm({ ...form, userType: e.target.value })}
-                      className="w-full px-3 py-2 border border-input bg-background rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
-                      required
-                    >
-                      <option value="">Select your role</option>
-                      <option value="brand">Brand/Company</option>
-                      <option value="influencer">Influencer/Content Creator</option>
-                      <option value="agency">Marketing Agency</option>
-                      <option value="other">Other</option>
-                    </select>
-                  </div>
-
-                  <div>
-                    <Label htmlFor="message">Message *</Label>
-                    <Textarea
-                      id="message"
-                      value={form.message}
-                      onChange={(e) => setForm({ ...form, message: e.target.value })}
-                      placeholder="Tell us about your project, requirements, or any questions you have..."
-                      rows={6}
-                      required
-                    />
-                  </div>
-
-                  <Button type="submit" className="w-full bg-primary hover:bg-primary/90 text-primary-foreground py-3 text-lg font-semibold">
-                    Send Message
-                  </Button>
-                </form>
+                <UnifiedForm submitLabel="Send Message" />
               </CardContent>
             </Card>
           </div>

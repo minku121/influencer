@@ -8,6 +8,7 @@ import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Label } from "@/components/ui/label"
 import { Mail, Phone, MapPin, Send, MessageCircle, Instagram } from "lucide-react"
+import UnifiedForm from "./unified-form"
 
 export function ContactSection() {
   const [formData, setFormData] = useState({
@@ -20,7 +21,7 @@ export function ContactSection() {
   const [selectedService, setSelectedService] = useState("")
   const [campaignIntent, setCampaignIntent] = useState("")
 
-  // Load selected service and campaign intent from localStorage
+  
   useEffect(() => {
     const service = localStorage.getItem('selectedService')
     const intent = localStorage.getItem('campaignIntent')
@@ -31,7 +32,7 @@ export function ContactSection() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
     
-    // Prepare form data with additional context
+   
     const submissionData = {
       ...formData,
       selectedService,
@@ -39,16 +40,13 @@ export function ContactSection() {
       timestamp: new Date().toISOString()
     }
     
-    // Handle form submission
+   
     console.log("Form submitted:", submissionData)
     
-    // You can add API call here to send data to your backend
-    // Example: await fetch('/api/contact', { method: 'POST', body: JSON.stringify(submissionData) })
     
-    // Show success message (you can implement a toast notification here)
     alert("Thank you for your message! We'll get back to you within 24 hours.")
     
-    // Clear form and localStorage
+   
     setFormData({ name: "", email: "", contact: "", message: "" })
     localStorage.removeItem('selectedService')
     localStorage.removeItem('campaignIntent')
@@ -63,7 +61,7 @@ export function ContactSection() {
     }))
   }
 
-  // Pre-fill message based on selected service and campaign intent
+  
   useEffect(() => {
     if (selectedService && campaignIntent) {
       let defaultMessage = `Hi, I'm interested in your ${selectedService} services. `
@@ -93,15 +91,13 @@ export function ContactSection() {
           </p>
           {selectedService && (
             <div className="mt-4 p-3 bg-primary/10 rounded-lg inline-block">
-              <p className="text-primary font-medium">
-                Selected Service: <span className="font-bold">{selectedService}</span>
-              </p>
+              
             </div>
           )}
         </div>
 
         <div className="grid lg:grid-cols-2 gap-12">
-          {/* Contact Information */}
+        
           <div className="space-y-8">
             <div>
               <h3 className="text-2xl font-bold text-foreground mb-6">Contact Information</h3>
@@ -164,84 +160,13 @@ export function ContactSection() {
             </Card>
           </div>
 
-          {/* Contact Form */}
+          {/* Contact Form (Unified) */}
           <Card className="border-0 bg-background/80 backdrop-blur-sm shadow-xl">
             <CardHeader>
               <CardTitle className="text-2xl font-bold text-foreground">Send us a Message</CardTitle>
             </CardHeader>
             <CardContent>
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <div className="space-y-2">
-                  <Label htmlFor="name" className="text-foreground font-medium">
-                    Name *
-                  </Label>
-                  <Input
-                    id="name"
-                    name="name"
-                    value={formData.name}
-                    onChange={handleChange}
-                    placeholder="Your full name"
-                    required
-                    className="border-border focus:border-primary focus:ring-primary/20"
-                  />
-                </div>
-
-                <div className="space-y-2">
-                  <Label htmlFor="email" className="text-foreground font-medium">
-                    Email *
-                  </Label>
-                  <Input
-                    id="email"
-                    name="email"
-                    type="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    placeholder="your@email.com"
-                    required
-                    className="border-border focus:border-primary focus:ring-primary/20"
-                  />
-                </div>
-
-                <div className="space-y-2">
-                  <Label htmlFor="contact" className="text-foreground font-medium">
-                    Contact Number *
-                  </Label>
-                  <Input
-                    id="contact"
-                    name="contact"
-                    value={formData.contact}
-                    onChange={handleChange}
-                    placeholder="Your contact number"
-                    required
-                    className="border-border focus:border-primary focus:ring-primary/20"
-                  />
-                </div>
-
-                <div className="space-y-2">
-                  <Label htmlFor="message" className="text-foreground font-medium">
-                    Message *
-                  </Label>
-                  <Textarea
-                    id="message"
-                    name="message"
-                    value={formData.message}
-                    onChange={handleChange}
-                    placeholder="Tell us about your project and goals..."
-                    rows={5}
-                    required
-                    className="border-border focus:border-primary focus:ring-primary/20 resize-none"
-                  />
-                </div>
-
-                <Button
-                  type="submit"
-                  size="lg"
-                  className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-semibold py-6 rounded-xl transition-all duration-300 hover:scale-105 hover:shadow-xl group"
-                >
-                  <Send className="w-5 h-5 mr-2 group-hover:translate-x-1 transition-transform" />
-                  Send Message
-                </Button>
-              </form>
+              <UnifiedForm submitLabel="Send Message" />
             </CardContent>
           </Card>
         </div>

@@ -2,6 +2,9 @@
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "@/components/ui/dialog"
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
 import { Badge } from "@/components/ui/badge"
 import { 
   Youtube, 
@@ -20,6 +23,8 @@ import {
 } from "lucide-react"
 import Image from "next/image"
 import { useRouter } from "next/navigation"
+import { useState } from "react"
+import UnifiedForm from "./unified-form"
 
 const services = [
   {
@@ -147,6 +152,7 @@ const differentiators = [
 
 export function ServicesPage() {
   const router = useRouter()
+  const [open, setOpen] = useState(false)
 
   const handleServiceClick = (serviceTitle: string) => {
     // Navigate to contact section or open contact form
@@ -166,23 +172,13 @@ export function ServicesPage() {
   }
 
   const handleStartCampaign = () => {
-    // Navigate to contact section
-    const contactSection = document.getElementById('contact')
-    if (contactSection) {
-      contactSection.scrollIntoView({ behavior: 'smooth' })
-    }
-    // Set campaign intent
-    localStorage.setItem('campaignIntent', 'start')
+    setOpen(true)
   }
 
   const handleScheduleCall = () => {
-    // Open contact form or navigate to contact
-    const contactSection = document.getElementById('contact')
-    if (contactSection) {
-      contactSection.scrollIntoView({ behavior: 'smooth' })
-    }
-    // Set call intent
-    localStorage.setItem('campaignIntent', 'call')
+    const phone = "+919767765725"
+    const text = encodeURIComponent("I want to schedule a call.")
+    window.open(`https://wa.me/${phone}?text=${text}`, "_blank")
   }
 
   const handleContactForm = () => {
@@ -195,6 +191,14 @@ export function ServicesPage() {
 
   return (
     <>
+      <Dialog open={open} onOpenChange={setOpen}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Start Your Campaign</DialogTitle>
+          </DialogHeader>
+          <UnifiedForm defaultIntent="start" submitLabel="Submit" onSubmitted={() => setOpen(false)} />
+        </DialogContent>
+      </Dialog>
       {/* Hero Section */}
       <section className="py-20 bg-gradient-to-br from-primary/10 via-secondary/5 to-background">
         <div className="max-w-7xl mx-auto px-4 text-center">
@@ -317,14 +321,7 @@ export function ServicesPage() {
                   <p className="text-muted-foreground text-sm leading-relaxed mb-4">
                     {service.description}
                   </p>
-                  <Button 
-                    onClick={() => handleLearnMore(service.title)}
-                    variant="outline" 
-                    size="sm" 
-                    className="w-full bg-white/80 hover:bg-white border-2 border-primary/30 hover:border-primary text-primary hover:text-primary-foreground hover:bg-primary transition-all duration-300 font-medium"
-                  >
-                    Learn More
-                  </Button>
+                  {/* Learn More removed per request */}
                 </CardContent>
               </Card>
             ))}
@@ -384,7 +381,7 @@ export function ServicesPage() {
               onClick={handleScheduleCall}
               variant="outline" 
               size="lg" 
-              className="border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground px-8 py-6 text-lg font-semibold rounded-full"
+              className="border-2 border-primary text-purple-500 hover:bg-primary hover:text-purple px-8 py-6 text-lg font-semibold rounded-full"
             >
               Schedule a Call
             </Button>

@@ -7,6 +7,8 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { useGsapAnimations } from "@/hooks/use-gsap-animations"
 import { gsap } from "gsap"
+import Image from "next/image"
+import UnifiedForm from "./unified-form"
 
 export function HeroSection() {
 
@@ -19,6 +21,8 @@ export function HeroSection() {
     gsap.set(".hero-content", { opacity: 0, y: 50 })
     gsap.set(".hero-buttons", { opacity: 0, x: -100 })
     gsap.set(".hero-image", { opacity: 0, x: 100, rotation: 15 })
+    gsap.set(".girl-photo", { opacity: 0, y: 60 })
+    gsap.set(".brand-badge", { opacity: 0, scale: 0.8, y: 20 })
 
     
     const tl = gsap.timeline()
@@ -41,6 +45,19 @@ export function HeroSection() {
       rotation: 0,
       duration: 1.2,
       ease: "power2.out"
+    }, "-=0.5")
+    .to(".girl-photo", {
+      opacity: 1,
+      y: 0,
+      duration: 0.9,
+      ease: "power2.out"
+    }, "-=0.6")
+    .to(".brand-badge", {
+      opacity: 1,
+      scale: 1,
+      y: 0,
+      duration: 0.6,
+      ease: "back.out(1.7)"
     }, "-=0.5")
 
     
@@ -89,23 +106,23 @@ export function HeroSection() {
           {/* Right Side - Hero Image */}
           <div ref={imageRef} className="hero-image flex justify-center lg:justify-end">
             <div className="relative">
-              <div className="w-80 h-80 lg:w-96 lg:h-96 bg-gradient-to-br from-primary/20 to-secondary/20 rounded-3xl p-8 backdrop-blur-sm border border-primary/20 shadow-2xl">
-                <div className="w-full h-full bg-gradient-to-br from-blue-500/20 to-purple-500/20 rounded-2xl flex items-center justify-center">
-                  <div className="text-center space-y-4">
-                    <div className="w-20 h-20 bg-primary/30 rounded-full flex items-center justify-center mx-auto">
-                      <svg className="w-10 h-10 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-                      </svg>
-                    </div>
-                    <div className="space-y-2">
-                      <div className="w-32 h-3 bg-primary/30 rounded-full mx-auto"></div>
-                      <div className="w-24 h-3 bg-secondary/30 rounded-full mx-auto"></div>
-                      <div className="w-28 h-3 bg-accent/30 rounded-full mx-auto"></div>
-                    </div>
-                  </div>
+              <div className="relative w-80 h-80 lg:w-96 lg:h-96 rounded-3xl overflow-hidden shadow-2xl border border-primary/20 bg-gradient-to-br from-primary/10 to-secondary/10">
+                <Image 
+                  src="/hero_img.png" 
+                  alt="Influencer" 
+                  fill 
+                  className="object-cover girl-photo"
+                  priority
+                />
+              </div>
+
+              {/* Animated circle badge */}
+              <div className="brand-badge absolute -top-15 -left-12 w-28 h-28 lg:w-32 lg:h-32 rounded-full bg-primary text-primary-foreground shadow-xl flex items-center justify-center border-4 border-white/60">
+                <div className="text-center text-sm lg:text-base font-bold leading-tight">
+                  200+<br/>brands
                 </div>
               </div>
-              
+
               {/* Floating elements around the main image */}
               <div className="absolute -top-4 -left-4 w-16 h-16 bg-yellow-400/20 rounded-full blur-sm animate-bounce" style={{ animationDelay: '0.5s' }}></div>
               <div className="absolute -bottom-4 -right-4 w-12 h-12 bg-pink-400/20 rounded-full blur-sm animate-bounce" style={{ animationDelay: '1s' }}></div>
@@ -126,21 +143,6 @@ export function HeroSection() {
 }
 
 function BrandDialog() {
-  const [form, setForm] = useState({ name: "", email: "", contact: "", brand: "", budget: "" })
-  
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-  
-    localStorage.setItem('userType', 'brand')
-    localStorage.setItem('brandFormData', JSON.stringify(form))
-    
-    
-    const contactSection = document.getElementById('contact')
-    if (contactSection) {
-      contactSection.scrollIntoView({ behavior: 'smooth' })
-    }
-  }
-  
   return (
     <Dialog>
       <DialogTrigger asChild>
@@ -152,53 +154,13 @@ function BrandDialog() {
         <DialogHeader>
           <DialogTitle>Brand Inquiry</DialogTitle>
         </DialogHeader>
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <div>
-            <Label htmlFor="brand-name">Name</Label>
-            <Input id="brand-name" value={form.name} onChange={e => setForm(f => ({ ...f, name: e.target.value }))} placeholder="Your Name" required />
-          </div>
-          <div>
-            <Label htmlFor="brand-email">Email</Label>
-            <Input id="brand-email" type="email" value={form.email} onChange={e => setForm(f => ({ ...f, email: e.target.value }))} placeholder="Email" required />
-          </div>
-          <div>
-            <Label htmlFor="brand-contact">Contact</Label>
-            <Input id="brand-contact" value={form.contact} onChange={e => setForm(f => ({ ...f, contact: e.target.value }))} placeholder="Contact Number" required />
-          </div>
-          <div>
-            <Label htmlFor="brand-brand">Brand Name</Label>
-            <Input id="brand-brand" value={form.brand} onChange={e => setForm(f => ({ ...f, brand: e.target.value }))} placeholder="Brand Name" required />
-          </div>
-          <div>
-            <Label htmlFor="brand-budget">Budget</Label>
-            <Input id="brand-budget" value={form.budget} onChange={e => setForm(f => ({ ...f, budget: e.target.value }))} placeholder="Budget" required />
-          </div>
-          <DialogFooter>
-            <Button type="submit" className="animate-pulse">Submit</Button>
-          </DialogFooter>
-        </form>
+        <UnifiedForm defaultUserType="brand" submitLabel="Submit" />
       </DialogContent>
     </Dialog>
   )
 }
 
 function InfluencerDialog() {
-  const [form, setForm] = useState({ name: "", email: "", contact: "", handle: "", niche: "", followers: "" })
-  
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-  
-    localStorage.setItem('userType', 'influencer')
-    localStorage.setItem('influencerFormData', JSON.stringify(form))
-    
-   
-    const contactSection = document.getElementById('contact')
-    
-    if (contactSection) {
-      contactSection.scrollIntoView({ behavior: 'smooth' })
-    }
-  }
-  
   return (
     <Dialog>
       <DialogTrigger asChild>
@@ -210,35 +172,7 @@ function InfluencerDialog() {
         <DialogHeader>
           <DialogTitle>Influencer Inquiry</DialogTitle>
         </DialogHeader>
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <div>
-            <Label htmlFor="influencer-name">Name</Label>
-            <Input id="influencer-name" value={form.name} onChange={e => setForm(f => ({ ...f, name: e.target.value }))} placeholder="Your Name" required />
-          </div>
-          <div>
-            <Label htmlFor="influencer-email">Email</Label>
-            <Input id="influencer-email" type="email" value={form.email} onChange={e => setForm(f => ({ ...f, email: e.target.value }))} placeholder="Email" required />
-          </div>
-          <div>
-            <Label htmlFor="influencer-contact">Contact</Label>
-            <Input id="influencer-contact" value={form.contact} onChange={e => setForm(f => ({ ...f, contact: e.target.value }))} placeholder="Contact Number" required />
-          </div>
-          <div>
-            <Label htmlFor="influencer-handle">Social Media Handle</Label>
-            <Input id="influencer-handle" value={form.handle} onChange={e => setForm(f => ({ ...f, handle: e.target.value }))} placeholder="@handle" required />
-          </div>
-          <div>
-            <Label htmlFor="influencer-niche">Niche</Label>
-            <Input id="influencer-niche" value={form.niche} onChange={e => setForm(f => ({ ...f, niche: e.target.value }))} placeholder="Niche" required />
-          </div>
-          <div>
-            <Label htmlFor="influencer-followers">Followers</Label>
-            <Input id="influencer-followers" value={form.followers} onChange={e => setForm(f => ({ ...f, followers: e.target.value }))} placeholder="Followers" required />
-          </div>
-          <DialogFooter>
-            <Button type="submit" className="animate-pulse">Submit</Button>
-          </DialogFooter>
-        </form>
+        <UnifiedForm defaultUserType="influencer" submitLabel="Submit" />
       </DialogContent>
     </Dialog>
   )

@@ -3,7 +3,6 @@
 import type React from "react"
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
 import { Instagram, Youtube, MessageCircle, Linkedin, TrendingUp, Camera, Megaphone, BarChart3 } from "lucide-react"
 import { useState, useEffect, useRef } from "react"
 
@@ -197,16 +196,7 @@ export function ServicesSection() {
                     </div>
                   ))}
                 </div>
-                <Button
-                  className={`w-full ${service.iconColor.replace("text-", "bg-").replace("-500", "-500")} text-black hover:opacity-90 transition-all duration-300 group-hover:scale-105 hover:text-amber-50`}
-                  style={{ transform: hoveredCard === index ? "translateZ(15px)" : "translateZ(0px)" }}
-                >
-                  {service.title === "YouTube Marketing" && "Explore YouTube Solutions"}
-                  {service.title === "Instagram Marketing" && "Explore Instagram Solutions"}
-                  {service.title === "LinkedIn Marketing" && "Explore LinkedIn Solutions"}
-                  {service.title === "Telegram Marketing" && "Explore Telegram Solutions"}
-                  {service.title === "WhatsApp Marketing" && "Explore WhatsApp Solutions"}
-                </Button>
+                {/* Button removed per request */}
               </CardContent>
             </Card>
           ))}

@@ -12,7 +12,7 @@ const brands = [
   { name: "Educative.io", src: "https://learn.educative.io/hubfs/Educative_Horizontal-Logo_Color.svg" },
   { name: "Target Test Prep", src: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSvnJy3fqxdZJKSDtaH5fKamkls4OU4qCLf9g&s" },
   { name: "Whizlabs", src: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQrVg-7Av0bJszmpil8KqGdMldK2ZibRVSvrg&s" },
-  { name: "BossCier Academy", src: "https://media.licdn.com/dms/image/v2/D4D22AQG3aGJ_6YOxJA/feedshare-shrink_800/feedshare-shrink_800/0/1683683201854?e=2147483647&v=beta&t=LqyjdAemewr9A0qe_efTUekf2Ks_ct9d4x08TtvFk8M" },
+  { name: "bosscoder", src: "https://media.licdn.com/dms/image/v2/D4D22AQG3aGJ_6YOxJA/feedshare-shrink_800/feedshare-shrink_800/0/1683683201854?e=2147483647&v=beta&t=LqyjdAemewr9A0qe_efTUekf2Ks_ct9d4x08TtvFk8M" },
 ]
 
 function Marquee({ direction = "left" }: { direction?: "left" | "right" }) {
@@ -37,6 +37,14 @@ export function BrandsSection() {
     <section className="py-16 bg-muted/40">
       <div className="max-w-6xl mx-auto px-4">
         <h2 className="text-2xl md:text-3xl font-bold text-center mb-8">Trusted by 100+ Leading Brands</h2>
+        <div className="relative mx-auto mb-8 w-full max-w-3xl">
+          <div className="relative group rounded-xl overflow-hidden shadow-md">
+            <Image src="/hero_img.png" alt="Influencer network" width={1200} height={600} className="w-full h-auto object-cover" />
+            <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+              <span className="text-white text-lg md:text-2xl font-semibold text-center px-4">100+ brands and 55K+ influencers.</span>
+            </div>
+          </div>
+        </div>
         <Marquee direction="left" />
         <Marquee direction="right" />
       </div>

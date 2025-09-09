@@ -26,7 +26,7 @@ export function Header() {
 
   return (
     <>
-      {/* Top contact bar */}
+      
       <div className="bg-primary text-primary-foreground py-2 px-4">
         <div className="max-w-7xl mx-auto flex justify-between items-center text-sm">
           <div className="flex items-center gap-2">
@@ -40,7 +40,7 @@ export function Header() {
         </div>
       </div>
 
-      {/* Main navigation */}
+     
       <header
         className={`sticky top-0 z-50 transition-all duration-300 ${
           isScrolled ? "bg-background/95 backdrop-blur-md shadow-lg" : "bg-background"

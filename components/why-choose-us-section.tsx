@@ -9,7 +9,7 @@ export function WhyChooseUsSection() {
       icon: Award,
       title: "Proven Track Record",
       description: "Over 5 years of experience with 200+ successful brand partnerships and campaigns.",
-      stat: "200+ Brands",
+      stat: "100+ Brands",
     },
     {
       icon: Users,

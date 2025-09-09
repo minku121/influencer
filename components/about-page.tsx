@@ -68,22 +68,22 @@ const values = [
 ]
 
 const brands = [
-  "Coding Ninjas",
-  "GeeksforGeeks", 
-  "Newton School",
-  "Masai School",
-  "Guvi Geek",
-  "Nextwave",
-  "Educative.io",
-  "Target Test Prep",
-  "Whizlabs",
-  "BossCier Academy"
+  { name: "Coding Ninjas", src: "https://files.codingninjas.in/new_cn_logo-29829.svg" },
+  { name: "Masai School", src: "https://cdn.masaischool.com/masai-website/Masai_Logo_dark_web_b21aab8c62.webp" },
+  { name: "Guvi Geek", src: "https://media.swipepages.com/2024/3/5fcde7acf64f9100108c719e/frame-4-750.webp" },
+  { name: "GeeksforGeeks", src: "https://media.geeksforgeeks.org/gfg-gg-logo.svg" },
+  { name: "Newton School", src: "https://images.jdmagicbox.com/v2/comp/bangalore/y3/080pxx80.xx80.220129213459.v4y3/catalogue/newton-school-hosur-road-bangalore-schools-tsd3sud9dn.jpg" },
+  { name: "Nextwave", src: "https://nxtwave-website-media-files.s3.ap-south-1.amazonaws.com/ccbp-website/Nxtwave_Colored.svg" },
+  { name: "Educative.io", src: "https://learn.educative.io/hubfs/Educative_Horizontal-Logo_Color.svg" },
+  { name: "Target Test Prep", src: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSvnJy3fqxdZJKSDtaH5fKamkls4OU4qCLf9g&s" },
+  { name: "Whizlabs", src: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQrVg-7Av0bJszmpil8KqGdMldK2ZibRVSvrg&s" },
+  { name: "bosscoder", src: "https://media.licdn.com/dms/image/v2/D4D22AQG3aGJ_6YOxJA/feedshare-shrink_800/feedshare-shrink_800/0/1683683201854?e=2147483647&v=beta&t=LqyjdAemewr9A0qe_efTUekf2Ks_ct9d4x08TtvFk8M" }
 ]
 
 export function AboutPage() {
   return (
     <>
-      {/* Hero Section */}
+     
       <section className="py-20 bg-gradient-to-br from-primary/10 via-secondary/5 to-background">
         <div className="max-w-7xl mx-auto px-4 text-center">
           <h1 className="text-5xl lg:text-6xl font-bold text-foreground mb-6">
@@ -95,7 +95,7 @@ export function AboutPage() {
         </div>
       </section>
 
-      {/* Main Content */}
+     
       <section className="py-20">
         <div className="max-w-7xl mx-auto px-4">
           <div className="grid lg:grid-cols-2 gap-16 items-center mb-20">
@@ -204,7 +204,7 @@ export function AboutPage() {
             ))}
           </div>
 
-          {/* Trusted Brands */}
+          
           <div className="text-center mb-16">
             <h2 className="text-4xl lg:text-5xl font-bold text-foreground mb-6">Trusted by Leading Brands</h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
@@ -213,16 +213,16 @@ export function AboutPage() {
           </div>
           
           <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-6 mb-20">
-            {brands.map((brand, index) => (
+            {brands.map((brand) => (
               <Card 
-                key={brand}
+                key={brand.name}
                 className="text-center border-2 border-muted hover:border-primary transition-all duration-300 hover:shadow-lg hover:scale-105"
               >
                 <CardContent className="p-6">
-                  <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-3">
-                    <CheckCircle className="w-6 h-6 text-primary" />
+                  <div className="w-full h-12 flex items-center justify-center mb-3">
+                    <Image src={brand.src} alt={brand.name} width={120} height={48} />
                   </div>
-                  <div className="font-semibold text-foreground">{brand}</div>
+                  <div className="font-semibold text-foreground">{brand.name}</div>
                 </CardContent>
               </Card>
             ))}
@@ -237,10 +237,10 @@ export function AboutPage() {
               Join the ranks of successful brands that trust Influnzo to drive their influencer marketing success
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground px-8 py-6 text-lg font-semibold rounded-full">
+              <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground px-8 py-6 text-lg font-semibold rounded-full" onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}>
                 Start Your Campaign
               </Button>
-              <Button variant="outline" size="lg" className="border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground px-8 py-6 text-lg font-semibold rounded-full">
+              <Button variant="outline" size="lg" className="border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground px-8 py-6 text-lg font-semibold rounded-full" onClick={() => window.location.assign('/services')}>
                 View Our Services
               </Button>
             </div>
