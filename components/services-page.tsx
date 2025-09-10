@@ -1,10 +1,6 @@
 "use client"
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "@/components/ui/dialog"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
 import { Badge } from "@/components/ui/badge"
 import { 
   Youtube, 
@@ -21,10 +17,7 @@ import {
   CheckCircle,
   ArrowRight
 } from "lucide-react"
-import Image from "next/image"
 import { useRouter } from "next/navigation"
-import { useState } from "react"
-import UnifiedForm from "./unified-form"
 
 const services = [
   {
@@ -151,54 +144,8 @@ const differentiators = [
 ]
 
 export function ServicesPage() {
-  const router = useRouter()
-  const [open, setOpen] = useState(false)
-
-  const handleServiceClick = (serviceTitle: string) => {
-    // Navigate to contact section or open contact form
-    const contactSection = document.getElementById('contact')
-    if (contactSection) {
-      contactSection.scrollIntoView({ behavior: 'smooth' })
-    }
-    // You can also store the selected service in localStorage or state for the contact form
-    localStorage.setItem('selectedService', serviceTitle)
-  }
-
-  const handleLearnMore = (serviceTitle: string) => {
-    // Navigate to services page or open detailed service modal
-    router.push('/services')
-    // Store the service for detailed view
-    localStorage.setItem('selectedService', serviceTitle)
-  }
-
-  const handleStartCampaign = () => {
-    setOpen(true)
-  }
-
-  const handleScheduleCall = () => {
-    const phone = "+919767765725"
-    const text = encodeURIComponent("I want to schedule a call.")
-    window.open(`https://wa.me/${phone}?text=${text}`, "_blank")
-  }
-
-  const handleContactForm = () => {
-    // Navigate to contact section
-    const contactSection = document.getElementById('contact')
-    if (contactSection) {
-      contactSection.scrollIntoView({ behavior: 'smooth' })
-    }
-  }
-
   return (
     <>
-      <Dialog open={open} onOpenChange={setOpen}>
-        <DialogContent>
-          <DialogHeader>
-            <DialogTitle>Start Your Campaign</DialogTitle>
-          </DialogHeader>
-          <UnifiedForm defaultIntent="start" submitLabel="Submit" onSubmitted={() => setOpen(false)} />
-        </DialogContent>
-      </Dialog>
       {/* Hero Section */}
       <section className="py-20 bg-gradient-to-br from-primary/10 via-secondary/5 to-background">
         <div className="max-w-7xl mx-auto px-4 text-center">
@@ -268,26 +215,7 @@ export function ServicesPage() {
             </div>
           </CardHeader>
 
-          {/* CTA Button */}
-          <CardContent>
-            <Button
-              onClick={() => handleServiceClick(service.title)}
-              className={`w-full font-semibold py-6 text-lg rounded-xl transition-all duration-300 group-hover:scale-105 hover:shadow-xl ${
-                service.title === "YouTube Marketing"
-                  ? "bg-red-500 hover:bg-red-600 text-white"
-                  : service.title === "Instagram Marketing"
-                  ? "bg-gradient-to-r from-pink-500 to-purple-500 hover:from-pink-600 hover:to-purple-600 text-white"
-                  : service.title === "LinkedIn Marketing"
-                  ? "bg-blue-500 hover:bg-blue-600 text-white"
-                  : service.title === "Telegram Marketing"
-                  ? "bg-teal-500 hover:bg-teal-600 text-white"
-                  : "bg-green-500 hover:bg-green-600 text-white"
-              }`}
-            >
-              Explore {service.title.split(" ")[0]} Solutions
-              <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
-            </Button>
-          </CardContent>
+          {/* CTA Button removed per request */}
         </Card>
       ))}
     </div>
@@ -360,34 +288,7 @@ export function ServicesPage() {
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-br from-primary/10 to-secondary/10">
-        <div className="max-w-4xl mx-auto px-4 text-center">
-          <h2 className="text-4xl lg:text-5xl font-bold text-foreground mb-6">
-            Ready to Scale Your Brand?
-          </h2>
-          <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
-            Join 100+ brands that trust Influnzo to drive their influencer marketing success
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button 
-              onClick={handleStartCampaign}
-              size="lg" 
-              className="bg-primary hover:bg-primary/90 text-primary-foreground px-8 py-6 text-lg font-semibold rounded-full"
-            >
-              Start Your Campaign
-            </Button>
-            <Button 
-              onClick={handleScheduleCall}
-              variant="outline" 
-              size="lg" 
-              className="border-2 border-primary text-purple-500 hover:bg-primary hover:text-purple px-8 py-6 text-lg font-semibold rounded-full"
-            >
-              Schedule a Call
-            </Button>
-          </div>
-        </div>
-      </section>
+      {/* CTA Section removed per request */}
     </>
   )
 }

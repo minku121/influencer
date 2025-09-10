@@ -77,7 +77,7 @@ const brands = [
   { name: "Educative.io", src: "https://learn.educative.io/hubfs/Educative_Horizontal-Logo_Color.svg" },
   { name: "Target Test Prep", src: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSvnJy3fqxdZJKSDtaH5fKamkls4OU4qCLf9g&s" },
   { name: "Whizlabs", src: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQrVg-7Av0bJszmpil8KqGdMldK2ZibRVSvrg&s" },
-  { name: "bosscoder", src: "https://media.licdn.com/dms/image/v2/D4D22AQG3aGJ_6YOxJA/feedshare-shrink_800/feedshare-shrink_800/0/1683683201854?e=2147483647&v=beta&t=LqyjdAemewr9A0qe_efTUekf2Ks_ct9d4x08TtvFk8M" }
+  { name: "Bosscoder", src: "https://media.licdn.com/dms/image/v2/D4D22AQG3aGJ_6YOxJA/feedshare-shrink_800/feedshare-shrink_800/0/1683683201854?e=2147483647&v=beta&t=LqyjdAemewr9A0qe_efTUekf2Ks_ct9d4x08TtvFk8M" }
 ]
 
 export function AboutPage() {

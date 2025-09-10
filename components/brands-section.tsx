@@ -37,14 +37,7 @@ export function BrandsSection() {
     <section className="py-16 bg-muted/40">
       <div className="max-w-6xl mx-auto px-4">
         <h2 className="text-2xl md:text-3xl font-bold text-center mb-8">Trusted by 100+ Leading Brands</h2>
-        <div className="relative mx-auto mb-8 w-full max-w-3xl">
-          <div className="relative group rounded-xl overflow-hidden shadow-md">
-            <Image src="/hero_img.png" alt="Influencer network" width={1200} height={600} className="w-full h-auto object-cover" />
-            <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-              <span className="text-white text-lg md:text-2xl font-semibold text-center px-4">100+ brands and 55K+ influencers.</span>
-            </div>
-          </div>
-        </div>
+        
         <Marquee direction="left" />
         <Marquee direction="right" />
       </div>
