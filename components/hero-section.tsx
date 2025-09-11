@@ -123,6 +123,13 @@ export function HeroSection() {
                 </div>
               </div>
 
+              {/* Additional circle badge - bottom right */}
+              <div className="brand-badge absolute -bottom-12 -right-2 w-28 h-28 lg:w-32 lg:h-32 rounded-full bg-primary text-primary-foreground shadow-xl flex items-center justify-center border-4 border-white/60">
+                <div className="text-center text-sm lg:text-base font-bold leading-tight">
+                  11k+<br/>influencers
+                </div>
+              </div>
+
               {/* Floating elements around the main image */}
               <div className="absolute -top-4 -left-4 w-16 h-16 bg-yellow-400/20 rounded-full blur-sm animate-bounce" style={{ animationDelay: '0.5s' }}></div>
               <div className="absolute -bottom-4 -right-4 w-12 h-12 bg-pink-400/20 rounded-full blur-sm animate-bounce" style={{ animationDelay: '1s' }}></div>

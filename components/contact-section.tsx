@@ -126,10 +126,11 @@ export function ContactSection() {
                   <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center">
                     <MessageCircle className="w-6 h-6 text-primary" />
                   </div>
-                  <div>
+                 <a href="https://wa.me/919767765725" target="_blank" rel="noopener noreferrer"> <div>
                     <div className="font-semibold text-foreground">WhatsApp</div>
                     <div className="text-muted-foreground">Quick chat available</div>
                   </div>
+                  </a>
                 </div>
               </div>
             </div>
